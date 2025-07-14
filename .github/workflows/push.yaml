@@ -1,0 +1,62 @@
+# .github/workflows/push.yml
+name: Push to Registry
+
+on:
+  workflow_dispatch:
+
+
+env:
+  DOCKER_CONTAINER_REGISTRY: ${{ github.actor }}
+  CI_PROJECT_PATH_MANUAL: 'changeme/salary-prediction-api'
+  IMAGE_NAME: 'salary-prediction-api'
+  REGISTRY: ghcr.io
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build image if needed
+        run: |
+          if ! docker images | grep -q $IMAGE_NAME; then
+            echo "Image not found, building first..."
+            chmod +x src/api/build_image.sh
+            ./src/api/build_image.sh
+          fi
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.CI_PROJECT_PATH_MANUAL }}/${{ env.IMAGE_NAME }}
+          tags: |
+            type=ref,event=branch
+            type=ref,event=pr
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Tag and push image
+        run: |
+          echo "Tagging new salary-prediction-api image"
+          echo "DEBUG"
+          echo "IMAGE_NAME=$IMAGE_NAME"
+          echo "REGISTRY=$REGISTRY"
+          echo "CI_PROJECT_PATH_MANUAL=$CI_PROJECT_PATH_MANUAL"
+          
+          # Tag with latest
+          docker tag $IMAGE_NAME $REGISTRY/$CI_PROJECT_PATH_MANUAL/$IMAGE_NAME:latest
+          docker push $REGISTRY/$CI_PROJECT_PATH_MANUAL/$IMAGE_NAME:latest
+          
+          # Tag with commit SHA
+          docker tag $IMAGE_NAME $REGISTRY/$CI_PROJECT_PATH_MANUAL/$IMAGE_NAME:${{ github.sha }}
+          docker push $REGISTRY/$CI_PROJECT_PATH_MANUAL/$IMAGE_NAME:${{ github.sha }}

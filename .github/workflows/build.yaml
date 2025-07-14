@@ -1,0 +1,29 @@
+# .github/workflows/build.yaml
+name: Build Docker Image
+
+on:
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: 'salary-prediction-api'
+  DATA_DIR: './src/data'
+  MODELS_DIR: './src/models'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          echo "Building a Docker image"
+          chmod +x src/api/build_image.sh
+          ./src/api/build_image.sh
+
+      - name: List Docker images
+        run: docker images

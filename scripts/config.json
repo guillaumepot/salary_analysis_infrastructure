@@ -1,0 +1,10 @@
+{
+    "github_username": "guillaumepot",
+    "repository_name": "salary-prediction-api",
+    "demo_url": "#",
+    "project": {
+        "name": "Salary Prediction API",
+        "logo": "images/logo.jpeg",
+        "description": "A POC of a Salary Prediction API deployed on Kubernetes with CI/CD."
+    }
+}

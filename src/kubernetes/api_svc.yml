@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salary-prediction-api
+  namespace: salary-prediction
+  labels:
+    app: salary-prediction-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: salary-prediction-api
+  template:
+    metadata:
+      namespace: salary-prediction
+      labels:
+        app: salary-prediction-api
+    spec:
+      imagePullSecrets:
+        - name: gitlab-registry-secret
+      containers:
+        - name: salary-prediction-api
+          image: changeme/salary-prediction-api:latest
+          env:
+            - name: MODELS_PATH
+              valueFrom:
+                configMapKeyRef:
+                  name: models
+                  key: models_path
+          volumeMounts:
+            - name: models
+              mountPath: /app/models
+          ports:
+          - containerPort: 8000
+      volumes:
+        - name: models
+          persistentVolumeClaim:
+            claimName: models

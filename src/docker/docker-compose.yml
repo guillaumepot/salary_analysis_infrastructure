@@ -1,0 +1,27 @@
+services:
+  rncp-prepare-dataframe:
+    build:
+      context: ./prepare_dataframe
+      dockerfile: Dockerfile
+    image: salary-prediction-prepare-dataframe:latest
+    container_name: salary-prediction-prepare-dataframe
+    volumes:
+      - ../data:/app/data
+    ports:
+      - 9991:9991
+    command: python3 prepare_dataframe.py
+
+  rncp-build-model:
+    build:
+      context: ./build_model
+      dockerfile: Dockerfile
+    image: salary-prediction-build-model:latest
+    container_name: salary-prediction-build-model
+    depends_on:
+      - salary-prediction-prepare-dataframe
+    volumes:
+      - ../data:/app/data
+      - ../models:/app/models
+    ports:
+      - 9992:9992
+    command: python3 build_model.py

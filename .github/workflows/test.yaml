@@ -1,0 +1,108 @@
+# .github/workflows/test.yml
+name: Test on push
+
+on:
+  workflow_dispatch:
+
+env:
+  DOCKER_CONTAINER_REGISTRY: ${{ github.actor }}
+  CI_PROJECT_PATH_MANUAL: 'changeme/salary-prediction-api'
+  DATA_DIR: './src/data'
+  MODELS_DIR: './src/models'
+  IMAGE_NAME: 'salary-prediction-api'
+  REGISTRY: ghcr.io
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      image-tag: ${{ steps.meta.outputs.tags }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker image
+        run: |
+          echo "Building a Docker image"
+          chmod +x src/api/build_image.sh
+          ./src/api/build_image.sh
+
+  run:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run container
+        run: |
+          echo "Running salary-prediction-api container"
+          chmod +x src/api/run_container.sh
+          ./src/api/run_container.sh
+
+  test:
+    runs-on: ubuntu-latest
+    needs: run
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Test API
+        run: |
+          echo "Calling hellowork endpoint of salary-prediction-api"
+          chmod +x ./api_test.sh
+          ./api_test.sh
+
+      - name: Cleanup containers
+        if: always()
+        run: |
+          docker container stop salary-prediction-api || true
+          docker container rm salary-prediction-api || true
+
+  push:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.event_name == 'push'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Tag and push image
+        run: |
+          echo "Tagging new salary-prediction-api image"
+          echo "DEBUG"
+          echo "IMAGE_NAME=$IMAGE_NAME"
+          echo "REGISTRY=$REGISTRY"
+          echo "CI_PROJECT_PATH_MANUAL=$CI_PROJECT_PATH_MANUAL"
+          docker tag $IMAGE_NAME $REGISTRY/$CI_PROJECT_PATH_MANUAL/$IMAGE_NAME:latest
+          docker push $REGISTRY/$CI_PROJECT_PATH_MANUAL/$IMAGE_NAME:latest
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: push
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup kubectl
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Restart Kubernetes deployment
+        run: |
+          echo "Restarting Salary Prediction API Kubernetes deployment"
+          # Note: You'll need to configure kubectl context and credentials
+          # kubectl rollout restart deployment/salary-prediction-api -n rncp
+          echo "Kubectl restart command would run here - configure credentials first"

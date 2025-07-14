@@ -1,0 +1,67 @@
+# .github/workflows/deploy.yml
+name: Deploy
+
+on:
+
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment to deploy to'
+        required: true
+        default: 'dev'
+        type: choice
+        options:
+        - dev
+        - staging
+        - main
+
+env:
+  IMAGE_NAME: 'salary-prediction-api'
+  REGISTRY: ghcr.io
+  CI_PROJECT_PATH_MANUAL: 'changeme/salary-prediction-api'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup your environment
+        run: echo "Setting up for ${{ github.ref }}"
+
+      - name: Deploy to Dev
+        if: github.ref == 'refs/heads/dev' || github.event.inputs.environment == 'dev'
+        run: |
+          echo "Deploying to DEV environment..."
+          # Add your dev deployment commands here
+
+      - name: Deploy to Staging
+        if: github.ref == 'refs/heads/staging' || github.event.inputs.environment == 'staging'
+        run: |
+          echo "Deploying to STAGING environment..."
+          # Add your staging deployment commands here
+
+      - name: Deploy to Production
+        if: github.ref == 'refs/heads/main' || github.event.inputs.environment == 'main'
+        run: |
+          echo "Deploying to PRODUCTION environment..."
+          # Add your production deployment commands here
+
+      - name: Setup kubectl
+        if: github.ref == 'refs/heads/main'
+        uses: azure/setup-kubectl@v3
+        with:
+          version: 'latest'
+
+      - name: Restart Kubernetes deployment
+        if: github.ref == 'refs/heads/main'
+        run: |
+          echo "Restarting Salary Prediction API Kubernetes deployment"
+          # Note: Configure kubectl context and credentials before uncommenting
+          # kubectl rollout restart deployment/salary-prediction-api -n rncp
+          echo "Kubectl restart command would run here - configure credentials first"
+        env:
+          # Add your Kubernetes credentials here
+          # KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+          # KUBE_TOKEN: ${{ secrets.KUBE_TOKEN }}
+          NAMESPACE: rncp
