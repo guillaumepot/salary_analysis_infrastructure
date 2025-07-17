@@ -42,7 +42,25 @@
 [![MIT License][license_badge]][license_url]
 
 <br />
-**Built with** [![Python][python_badge]][python_url] [![Docker][docker_badge]][docker_url] [![FastAPI][fastapi_badge]][fastapi_url] [![Kubernetes][kubernetes_badge]][kubernetes_url] [![GitHub][github_badge]][github_url] [![Grafana][grafana_badge]][grafana_url] [![Prometheus][prometheus_badge]][prometheus_url]
+**Built with**
+
+**Core Technologies:**  
+[![Python][python_badge]][python_url] [![FastAPI][fastapi_badge]][fastapi_url] [![Docker][docker_badge]][docker_url]
+
+**Infrastructure:**  
+[![Kubernetes][kubernetes_badge]][kubernetes_url] [![GitHub][github_badge]][github_url]
+
+**Monitoring:**  
+[![Grafana][grafana_badge]][grafana_url] [![Prometheus][prometheus_badge]][prometheus_url]**Built with**
+
+**Core Technologies:**  
+[![Python][python_badge]][python_url] [![FastAPI][fastapi_badge]][fastapi_url] [![Docker][docker_badge]][docker_url]
+
+**Infrastructure:**  
+[![Kubernetes][kubernetes_badge]][kubernetes_url] [![GitHub][github_badge]][github_url]
+
+**Monitoring:**  
+[![Grafana][grafana_badge]][grafana_url] [![Prometheus][prometheus_badge]][prometheus_url]
 
 <!-- PROJECT LOGO -->
 <br />
