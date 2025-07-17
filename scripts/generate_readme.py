@@ -10,7 +10,7 @@ Generate the README.md file from the template.
 import json
 
 # Read variables from config.yaml
-with open("scripts/config.json", "r") as f:
+with open("./scripts/config.json", "r") as f:
     variables = json.load(f)
 
 def flatten_dict(d, parent_key='', sep='.'):

@@ -1,10 +1,11 @@
 {
     "github_username": "guillaumepot",
-    "repository_name": "salary-prediction-api",
+    "repository_name": "salary_analysis_tool",
+    "linkedin_username": "062guillaumepot",
     "demo_url": "#",
     "project": {
-        "name": "Salary Prediction API",
+        "name": "Salary Analysis Tool",
         "logo": "images/logo.jpeg",
-        "description": "A POC of a Salary Prediction API deployed on Kubernetes with CI/CD."
+        "description": "A tool to analyze salary data."
     }
 }
