@@ -99,7 +99,7 @@
 POC of a Salary Prediction API including ETL pipeline, Machine Learning (simplified) and a Kubernetes deployment through a whole CI/CD pipeline.
 
 
-```
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
