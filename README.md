@@ -1,14 +1,14 @@
 <!-- BADGES -->
-[contributors_badge]: https://img.shields.io/github/contributors/guillaumepot/salary-prediction-api.svg?style=for-the-badge
-[contributors_url]: https://github.com/guillaumepot/salary-prediction-api/graphs/contributors
-[forks_badge]: https://img.shields.io/github/forks/guillaumepot/salary-prediction-api.svg?style=for-the-badge
-[forks_url]: https://github.com/guillaumepot/salary-prediction-api/network/members
-[stars_badge]: https://img.shields.io/github/stars/guillaumepot/salary-prediction-api.svg?style=for-the-badge
-[stars_url]: https://github.com/guillaumepot/salary-prediction-api/stargazers
-[issues_badge]: https://img.shields.io/github/issues/guillaumepot/salary-prediction-api.svg?style=for-the-badge
-[issues_url]: https://github.com/guillaumepot/salary-prediction-api/issues
-[license_badge]: https://img.shields.io/github/license/guillaumepot/salary-prediction-api.svg?style=for-the-badge
-[license_url]: https://github.com/guillaumepot/salary-prediction-api/blob/master/LICENSE.txt
+[contributors_badge]: https://img.shields.io/github/contributors/guillaumepot/salary_analysis_infrastructure.svg?style=for-the-badge
+[contributors_url]: https://github.com/guillaumepot/salary_analysis_infrastructure/graphs/contributors
+[forks_badge]: https://img.shields.io/github/forks/guillaumepot/salary_analysis_infrastructure.svg?style=for-the-badge
+[forks_url]: https://github.com/guillaumepot/salary_analysis_infrastructure/network/members
+[stars_badge]: https://img.shields.io/github/stars/guillaumepot/salary_analysis_infrastructure.svg?style=for-the-badge
+[stars_url]: https://github.com/guillaumepot/salary_analysis_infrastructure/stargazers
+[issues_badge]: https://img.shields.io/github/issues/guillaumepot/salary_analysis_infrastructure?style=for-the-badge
+[issues_url]: https://github.com/guillaumepotsalary_analysis_infrastructure/issues
+[license_badge]: https://img.shields.io/github/license/guillaumepot/salary_analysis_infrastructure.svg?style=for-the-badge
+[license_url]: https://github.com/guillaumepot/salary_analysis_infrastructure/blob/master/LICENSE.txt
 [linkedin_badge]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin_url]: https://linkedin.com/in/062guillaumepot
 
