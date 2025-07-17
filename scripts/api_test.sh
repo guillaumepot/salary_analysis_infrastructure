@@ -4,7 +4,7 @@
 curl -X GET localhost:8000/hello
 echo
 
-# Bonne requete
+# Good request
 curl -X 'POST' \
   'http://localhost:8000/predict' \
   -H 'accept: application/json' \
@@ -21,7 +21,7 @@ curl -X 'POST' \
 }'
 echo
 
-# Mauvaise requete
+# Bad request
 curl -X 'POST' \
   'http://localhost:8000/predict' \
   -H 'accept: application/json' \

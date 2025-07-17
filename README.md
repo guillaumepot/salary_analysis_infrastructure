@@ -1,14 +1,14 @@
 <!-- BADGES -->
-[contributors_badge]: https://img.shields.io/github/contributors/guillaumepot/salary_analysis_infrastructure.svg?style=for-the-badge
-[contributors_url]: https://github.com/guillaumepot/salary_analysis_infrastructure/graphs/contributors
-[forks_badge]: https://img.shields.io/github/forks/guillaumepot/salary_analysis_infrastructure.svg?style=for-the-badge
-[forks_url]: https://github.com/guillaumepot/salary_analysis_infrastructure/network/members
-[stars_badge]: https://img.shields.io/github/stars/guillaumepot/salary_analysis_infrastructure.svg?style=for-the-badge
-[stars_url]: https://github.com/guillaumepot/salary_analysis_infrastructure/stargazers
-[issues_badge]: https://img.shields.io/github/issues/guillaumepot/salary_analysis_infrastructure?style=for-the-badge
-[issues_url]: https://github.com/guillaumepotsalary_analysis_infrastructure/issues
-[license_badge]: https://img.shields.io/github/license/guillaumepot/salary_analysis_infrastructure.svg?style=for-the-badge
-[license_url]: https://github.com/guillaumepot/salary_analysis_infrastructure/blob/master/LICENSE.txt
+[contributors_badge]: https://img.shields.io/github/contributors/guillaumepot/salary_analysis_tool.svg?style=for-the-badge
+[contributors_url]: https://github.com/guillaumepot/salary_analysis_tool/graphs/contributors
+[forks_badge]: https://img.shields.io/github/forks/guillaumepot/salary_analysis_tool.svg?style=for-the-badge
+[forks_url]: https://github.com/guillaumepot/salary_analysis_tool/network/members
+[stars_badge]: https://img.shields.io/github/stars/guillaumepot/salary_analysis_tool.svg?style=for-the-badge
+[stars_url]: https://github.com/guillaumepot/salary_analysis_tool/stargazers
+[issues_badge]: https://img.shields.io/github/issues/guillaumepot/salary_analysis_tool?style=for-the-badge
+[issues_url]: https://github.com/guillaumepot/salary_analysis_tool/issues
+[license_badge]: https://img.shields.io/github/license/guillaumepot/salary_analysis_tool.svg?style=for-the-badge
+[license_url]: https://github.com/guillaumepot/salary_analysis_tool/blob/master/LICENSE.txt
 [linkedin_badge]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin_url]: https://linkedin.com/in/062guillaumepot
 
@@ -33,7 +33,7 @@
 <!-- README -->
 <a id="readme-top"></a>
 
-# Salary Prediction API
+# Salary Analysis Tool
 
 [![Contributors][contributors_badge]][contributors_url]
 [![Forks][forks_badge]][forks_url]
@@ -41,32 +41,34 @@
 [![Issues][issues_badge]][issues_url]
 [![MIT License][license_badge]][license_url]
 
+<br />
+**Built with** [![Python][python_badge]][python_url] [![Docker][docker_badge]][docker_url] [![FastAPI][fastapi_badge]][fastapi_url] [![Kubernetes][kubernetes_badge]][kubernetes_url] [![GitHub][github_badge]][github_url] [![Grafana][grafana_badge]][grafana_url] [![Prometheus][prometheus_badge]][prometheus_url]
 
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/guillaumepot/salary-prediction-api">
+  <a href="https://github.com/guillaumepot/salary_analysis_tool">
     <img src="images/logo.jpeg" alt="Logo" width="150" height="150">
   </a>
 </div>
 
 <!-- PROJECT DESCRIPTION -->
 <p align="center" style="font-size: 1.2rem; font-weight: 300; color: #666;">
-  A POC of a Salary Prediction API deployed on Kubernetes with CI/CD.
+  A tool to analyze salary data.
 </p>
 
 <!-- PROJECT INFO -->
 <div>
   <p align="center">
     <br />
-    <a href="https://github.com/guillaumepot/salary-prediction-api/blob/main/docs/README.md"><strong>Explore the docs</strong></a>
+    <a href="https://github.com/guillaumepot/salary_analysis_tool/blob/main/docs/README.md"><strong>Explore the docs</strong></a>
     <br />
     <br />
     <a href="#">View Demo</a>
     ·
-    <a href="https://github.com/guillaumepot/salary-prediction-api/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    <a href="https://github.com/guillaumepot/salary_analysis_tool/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
-    <a href="https://github.com/guillaumepot/salary-prediction-api/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+    <a href="https://github.com/guillaumepot/salary_analysis_tool/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
   </p>
 </div>
 
@@ -78,7 +80,6 @@
   <ol>
     <li><a href="#about-the-project">About The Project</a>
     </li>
-    <li><a href="#built-with">Built With</a></li>
     <li><a href="#key-features">Key Features</a></li>
     <li><a href="#getting-started">Getting Started</a>
       <ul>
@@ -99,22 +100,8 @@
 POC of a Salary Prediction API including ETL pipeline, Machine Learning (simplified) and a Kubernetes deployment through a whole CI/CD pipeline.
 
 
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-## Built With
-
-### Core Technologies
-* [![Python][python_badge]][python_url] - Main programming language
-* [![Docker][docker_badge]][docker_url] - Containerization
-* [![FastAPI][fastapi_badge]][fastapi_url] - Web API framework
-* [![Kubernetes][kubernetes_badge]][kubernetes_url] - Container orchestration
-* [![GitHub][github_badge]][github_url] - Code repository
-* [![Grafana][grafana_badge]][grafana_url] - Monitoring
-* [![Prometheus][prometheus_badge]][prometheus_url] - Metrics
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Key Features
 
@@ -145,20 +132,14 @@ POC of a Salary Prediction API including ETL pipeline, Machine Learning (simplif
 ### Prerequisites
 - **Python 3.12+** with [uv](https://github.com/astral-sh/uv) package manager
 - **Docker & Docker Compose** for infrastructure services
-
-### Configuration
-
-1. Set the data source URL in the following file:
-  - ./src/pipeline/extract.py
-
-2. Update all 'changeme' with the correct values.
+- **Kubernetes** for deployment
 
 
 ### Installation
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/guillaumepot/salary-prediction-api.git
-   cd salary-prediction-api
+   git clone https://github.com/guillaumepot/salary_analysis_tool.git
+   cd salary_analysis_tool
    ```
 2. **Install dependencies**
    ```bash
@@ -167,6 +148,25 @@ POC of a Salary Prediction API including ETL pipeline, Machine Learning (simplif
 
 ### Usage
 - You can directly use the API to get predictions.
+
+*Examples*
+
+```bash
+curl -X 'POST' \
+  'http://localhost:8000/predict' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "company": 0,
+  "gender": 0,
+  "position_level": 0,
+  "performance_score": 0,
+  "work_hours_per_week": 0,
+  "experience_years": 0,
+  "has_certifications": true,
+  "promoted": true
+}'
+```
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
